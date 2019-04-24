@@ -4,27 +4,26 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Inventory extends Model
+class UserStatus extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'inventory';
+    protected $table = 'user_status';
 
     /**
      * Primary key of current table.
      *
      * @var string
      */
-    protected $primaryKey = 'idInventory';
-
-    /**
+    protected $primaryKey = 'idUserStatus';
+   
+     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['tile','availability','releaseYear','rentStatus','company','image','rating','idPlatform','idCategory','idCollectionType'];
+    protected $fillable = ['totalRents','lastUpdate','idStatusType'];
 }
-

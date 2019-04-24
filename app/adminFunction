@@ -1,0 +1,52 @@
+<?php
+    ob_start();
+    define("SEC", "Secretary");
+    define("VLT", "Volunteer");
+    function volOrSec(){
+        if(isset($_SESSION['Volunteer'])){
+            $_SESSION['adminAccess']  = false;
+            return $_SESSION['Volunteer'];
+        }
+        else if(isset($_SESSION['Secretary'])){ 
+            $_SESSION['adminAccess']  = true;
+            return $_SESSION['Secretary'];
+        }
+        return "Nothing";
+    }
+
+    function adminMenu(){
+        if($_SESSION['adminAccess']){
+            require_once("secretaryMenu.php");
+        }
+    }
+
+    function highlight(){
+        global $id;
+        switch($id){
+            case 1: 
+                echo "<style type=\"text/css\"> #rental{background-color: darkgrey;} </style>";
+                break;
+            case 2: echo "<style type=\"text/css\"> #game{background-color: darkgrey;} </style>";
+                break;
+            case 3: echo "<style type=\"text/css\"> #member{background-color: darkgrey;} </style>";
+                 break;
+            case 4: echo "<style type=\"text/css\"> #rule{background-color:darkgrey;} </style>";
+                break;
+            case 5: echo "<style type= \"text/css\"> #ban{background-color: darkgrey;} </style>";
+                break;
+            case 6: echo "<style type=\"text/css\"> #report{background-color: darkgrey;} </style>";
+                break;
+        }
+    }
+
+    if(isset($_POST['login'])){
+        if($_POST['login'] == SEC){
+            $_SESSION[SEC] = SEC;
+        }
+        else{
+            $_SESSION[VLT] = VLT;
+        }
+    }
+
+    
+?>
